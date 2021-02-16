@@ -1,6 +1,6 @@
 # OpenSCAD Function Plotting Library
 
-<p align="center"><img alt="Thread demo image" src="./images/demo_plot_function.png"></p>
+<p align="center"><img alt="Demo image" src="./images/demo_plot_function.png"></p>
 
 This is a general purpose function plotting library for OpenSCAD which will
 render functions with Cartesian coordinates (x & y input, z output),
