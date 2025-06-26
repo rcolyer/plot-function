@@ -55,9 +55,12 @@ The module call PlotFunction can occur anywhere a normal polyhedron could be
 generated, but the function definition Func1 must be declared at the top-level
 of the code so that it can be accessed from within the included plotting
 library. Note that it must "include" plot_function.scad rather than "use" it,
-for the old modality, so that Func1 and others are accessible. A variety of
-  usage demonstrations are in the demo_plot_function.scad file, and the API for
-  the three plotting modules is as follows:
+for the old modality, so that Func1 and others are accessible.
+
+## Full API
+
+A variety of usage demonstrations are in the demo_plot_function.scad file,
+and the API for the three plotting modules is as follows:
 
 ```
 // Plots either a function literal or the numbered function Func1 through
