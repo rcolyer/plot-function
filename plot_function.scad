@@ -2,7 +2,7 @@
 // This work is released with CC0 into the public domain.
 // https://creativecommons.org/publicdomain/zero/1.0/
 //
-// https://www.thingiverse.com/thing:2391851
+// https://github.com/rcolyer/plot-function
 
 
 // Note:  For use as a library this file must be included with "include",
@@ -46,7 +46,8 @@
 //  }
 
 
-// Plots the numbered function Func1 through Func9, where FuncN is 1 through 9.
+// Plots either a function literal or the numbered function Func1 through
+// Func9, where FuncN is either the function literal or the number 1 through 9.
 // Each function is a function of x and y.
 // minx_stepx_maxx should be [minx, stepx, maxx], and likewise for y,
 // specifying the domain to be plotted.
@@ -100,9 +101,9 @@ module PlotFunction(FuncN, minx_stepx_maxx, miny_stepy_maxy) {
 }
 
 
-// Plots the numbered function PolarFunc1 through PolarFunc9, where
-// PolarFuncN is 1 through 9.  Each function is a function of radius and
-// angle.
+// Plots either a function literal or the numbered function PolarFunc1 through
+// PolarFunc9, where PolarFuncN is either the function literal or the number 1
+// through 9.  Each function is a function of radius and angle.
 // max_r is the outer radius, and min_step is the smallest step size between
 // points.
 // To guarantee a properly manifold shape, the routine will only render
@@ -138,9 +139,10 @@ module PlotPolarFunction(PolarFuncN, max_r, min_step=-1) {
 }
 
 
-// Plots the numbered function AxialFunc1 through AxialFunc9, where
-// AxialFuncN is 1 through 9.  Each function is a function of z-height and
-// angle, and returns the radius outward in the xy-plane.
+// Plots either a function literal, or the numbered function AxialFunc1 through
+// AxialFunc9, where AxialFuncN is either the function literal or the number
+// 1 through 9.  Each function is a function of z-height and angle, and returns
+// the radius outward in the xy-plane.
 // max_r is the outer radius, and min_step is the smallest step size between
 // points.
 // minz_stepz_maxz should be [minz, stepz, maxz], and likewise for y,
@@ -164,7 +166,7 @@ module PlotAxialFunction(AxialFuncN, minz_stepz_maxz, num_circle_steps=360) {
           )
           [rchecked * cos(a), rchecked * sin(a), z]
       ]
-   
+
   ];
 
   PlotClosePoints(pointarrays);
@@ -172,44 +174,47 @@ module PlotAxialFunction(AxialFuncN, minz_stepz_maxz, num_circle_steps=360) {
 
 
 // Relays function calls to Func1 through Func9
-function CallFunc(x, y, n) = 
-  (n == 1) ? Func1(x, y) :
-  (n == 2) ? Func2(x, y) :
-  (n == 3) ? Func3(x, y) :
-  (n == 4) ? Func4(x, y) :
-  (n == 5) ? Func5(x, y) :
-  (n == 6) ? Func6(x, y) :
-  (n == 7) ? Func7(x, y) :
-  (n == 8) ? Func8(x, y) :
-  (n == 9) ? Func9(x, y) :
+function CallFunc(x, y, fn) =
+  is_function(fn) ? fn(x, y) :
+  (fn == 1) ? Func1(x, y) :
+  (fn == 2) ? Func2(x, y) :
+  (fn == 3) ? Func3(x, y) :
+  (fn == 4) ? Func4(x, y) :
+  (fn == 5) ? Func5(x, y) :
+  (fn == 6) ? Func6(x, y) :
+  (fn == 7) ? Func7(x, y) :
+  (fn == 8) ? Func8(x, y) :
+  (fn == 9) ? Func9(x, y) :
   FunctionNumberOutOfRange;
 
 
 // Relays function calls to PolarFunc1 through PolarFunc9
-function CallPolarFunc(r, ang, n) = 
-  (n == 1) ? PolarFunc1(r, ang) :
-  (n == 2) ? PolarFunc2(r, ang) :
-  (n == 3) ? PolarFunc3(r, ang) :
-  (n == 4) ? PolarFunc4(r, ang) :
-  (n == 5) ? PolarFunc5(r, ang) :
-  (n == 6) ? PolarFunc6(r, ang) :
-  (n == 7) ? PolarFunc7(r, ang) :
-  (n == 8) ? PolarFunc8(r, ang) :
-  (n == 9) ? PolarFunc9(r, ang) :
+function CallPolarFunc(r, ang, fn) =
+  is_function(fn) ? fn(r, ang) :
+  (fn == 1) ? PolarFunc1(r, ang) :
+  (fn == 2) ? PolarFunc2(r, ang) :
+  (fn == 3) ? PolarFunc3(r, ang) :
+  (fn == 4) ? PolarFunc4(r, ang) :
+  (fn == 5) ? PolarFunc5(r, ang) :
+  (fn == 6) ? PolarFunc6(r, ang) :
+  (fn == 7) ? PolarFunc7(r, ang) :
+  (fn == 8) ? PolarFunc8(r, ang) :
+  (fn == 9) ? PolarFunc9(r, ang) :
   PolarFunctionNumberOutOfRange;
 
 
 // Relays function calls to AxialFunc1 through AxialFunc9
-function CallAxialFunc(z, ang, n) = 
-  (n == 1) ? AxialFunc1(z, ang) :
-  (n == 2) ? AxialFunc2(z, ang) :
-  (n == 3) ? AxialFunc3(z, ang) :
-  (n == 4) ? AxialFunc4(z, ang) :
-  (n == 5) ? AxialFunc5(z, ang) :
-  (n == 6) ? AxialFunc6(z, ang) :
-  (n == 7) ? AxialFunc7(z, ang) :
-  (n == 8) ? AxialFunc8(z, ang) :
-  (n == 9) ? AxialFunc9(z, ang) :
+function CallAxialFunc(z, ang, fn) =
+  is_function(fn) ? fn(z, ang) :
+  (fn == 1) ? AxialFunc1(z, ang) :
+  (fn == 2) ? AxialFunc2(z, ang) :
+  (fn == 3) ? AxialFunc3(z, ang) :
+  (fn == 4) ? AxialFunc4(z, ang) :
+  (fn == 5) ? AxialFunc5(z, ang) :
+  (fn == 6) ? AxialFunc6(z, ang) :
+  (fn == 7) ? AxialFunc7(z, ang) :
+  (fn == 8) ? AxialFunc8(z, ang) :
+  (fn == 9) ? AxialFunc9(z, ang) :
   AxialFunctionNumberOutOfRange;
 
 

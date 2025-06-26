@@ -53,10 +53,10 @@ module DemoNumber(n) {
     PlotPolarFunction(3, 22, 0.4);
 
     // 4 -- A simple chalice
-		difference() {
-			PlotAxialFunction(1, [0, 0.4, 50], 180);
-			PlotAxialFunction(2, [2, 0.4, 51], 180);
-		}
+    difference() {
+      PlotAxialFunction(1, [0, 0.4, 50], 180);
+      PlotAxialFunction(2, [2, 0.4, 51], 180);
+    }
 
     // 5 -- Two-slit interference
     union() {
